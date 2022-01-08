@@ -41,14 +41,14 @@ ipvs对内核的操作相关项。
 ```go
 // In IPVS proxy mode, the following flags need to be set
 const (
-sysctlBridgeCallIPTables= "net/bridge/bridge-nf-call-iptables"
-sysctlVSConnTrack= "net/ipv4/vs/conntrack"
-sysctlConnReuse= "net/ipv4/vs/conn_reuse_mode"
-sysctlExpireNoDestConn= "net/ipv4/vs/expire_nodest_conn"
-sysctlExpireQuiescentTemplate= "net/ipv4/vs/expire_quiescent_template"
-sysctlForward= "net/ipv4/ip_forward"
-sysctlArpIgnore= "net/ipv4/conf/all/arp_ignore"
-sysctlArpAnnounce= "net/ipv4/conf/all/arp_announce"
+	sysctlBridgeCallIPTables= "net/bridge/bridge-nf-call-iptables"
+	sysctlVSConnTrack= "net/ipv4/vs/conntrack"
+	sysctlConnReuse= "net/ipv4/vs/conn_reuse_mode"
+	sysctlExpireNoDestConn= "net/ipv4/vs/expire_nodest_conn"
+	sysctlExpireQuiescentTemplate= "net/ipv4/vs/expire_quiescent_template"
+	sysctlForward= "net/ipv4/ip_forward"
+	sysctlArpIgnore= "net/ipv4/conf/all/arp_ignore"
+	sysctlArpAnnounce= "net/ipv4/conf/all/arp_announce"
 )
 ```
 
