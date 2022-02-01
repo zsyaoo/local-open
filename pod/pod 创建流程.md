@@ -10,3 +10,4 @@
 4. Scheduler同样通过apiserver的watch接口更新到pod可以被调度，通过算法给pod分配节点，并将pod和对应节点绑定的信息交给apiserver，apiserver写到etcd，然后将pod交给kubelet。
 5. kubelet收到pod后，调用CNI接口给pod创建pod网络，调用CRI接口去启动容器，调用CSI进行存储卷的挂载。
 6. 网络，容器，存储创建完成后pod创建完成，等业务进程启动后，pod运行成功。
+备注: pod 的创建详细流程需要根据源码深入分析
