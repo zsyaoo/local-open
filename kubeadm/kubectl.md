@@ -1,3 +1,4 @@
+```shell
 --address ip                                              kubelet 服务监听的IP地址（设置为 0.0.0.0 监听所有地址）（默认 0.0.0.0 ）
 --allow-privileged                                        如果为 true ，将允许容器请求特权模式
 --anonymous-auth                                          允许匿名请求到 kubelet 服务。未被另一个身份验证方法拒绝的请求被视为匿名请求。匿名请求包含系
@@ -151,4 +152,7 @@ TaintBasedEvictions=true|false (ALPHA - default=false)
 --maximum-dead-containers=100 #在本node上保留已经停止的containers的个数，超过就会被清除
 
 --maximum-dead-containers-per-container=2 #以pod为单位，可以在node上保留已经停止的pod的上限
+
+
+```
 
