@@ -147,3 +147,33 @@ spec:
 ![image](https://user-images.githubusercontent.com/23715258/149048831-77a191b3-ae98-47c0-aad8-10e811ade951.png)
 
 下面来介绍下涉及的组件与作用。
+
+### 1. volume plugin
+
+扩展各种存储类型的卷的管理能力，实现第三方存储的各种操作能力与k8s存储系统的结合。调用第三方存储的接口或命令，从而提供数据卷的创建/删除、attach/detach、mount/umount的具体操作实现，可以认为是第三方存储的代理人。前面分析组件中的对于数据卷的创建/删除、attach/detach、mount/umount操作，全是调用volume plugin来完成。
+
+根据源码所在位置，volume plugin分为in-tree与out-of-tree。
+
+**in-tree**
+
+在k8s源码内部实现，和k8s一起发布、管理，更新迭代慢、灵活性差。
+
+**out-of-tree**
+
+代码独立于k8s，由存储厂商实现，有csi、flexvolume两种实现。
+
+#### csi plugin
+
+csi plugin分为ControllerServer与NodeServer，各负责不同的存储操作。
+
+#### external plugin
+
+external plugin包括了external-provisioner、external-attacher、external-resizer、external-snapshotter等，external plugin辅助csi plugin组件，共同完成了存储相关操作。external plugin负责watch pvc、volumeAttachment等对象，然后调用volume plugin来完成存储的相关操作。如external-provisioner watch pvc对象，然后调用csi plugin来创建存储，最后创建pv对象；external-attacher watch volumeAttachment对象，然后调用csi plugin来做attach/dettach操作；external-resizer watch pvc对象，然后调用csi plugin来做存储的扩容操作等。
+**Node-Driver-Registrar**
+
+Node-Driver-Registrar组件负责实现csi plugin（NodeServer）的注册，让kubelet感知csi plugin的存在。
+
+#### 组件部署方式
+
+csi plugin controllerServer与external plugin作为容器，使用deployment部署，多副本可实现高可用；而csi plugin NodeServer与Node-Driver-Registrar作为容器，使用daemonset部署，即每个node节点都有。
+
