@@ -212,9 +212,9 @@ Leader Completeness： 如果一个entry被提交了，那么在之后的leader�
 
 在client看来：
 
-如果client发送一个请求，leader返回ok响应，那么client认为这次请求成功执行了，那么这个请求就需要被真实的落地，不能丢。
+如果client发送一个请求，leader返回ok的响应，那么client认为这次请求成功执行了，那么这个请求就需要被真实的落地，数据不能丢。
 
-如果leader没有返回ok，那么client可以认为这次请求没有成功执行，之后可以通过重试方式来继续请求。
+如果leader没有返回ok响应，那么client可以认为这次请求没有成功执行，之后通过重试方式来继续请求。
 
 所以对leader来说：
 
