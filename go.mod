@@ -1,6 +1,6 @@
 module github.com/zsyaoo/opencall
 
-go 1.18
+go 1.19
 
 
 require (
